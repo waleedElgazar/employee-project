@@ -8,14 +8,13 @@
       <div class="card" style="width: 18rem;">
         <img src="{{employee.img}}" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">employee name : {{employee.name}}</h5>
-          <h5 class="card-title">employee title : {{employee.title |employeePipe:8}}</h5>
+          <h5 class="card-title">name : {{employee.name}}</h5>
+          <h5 class="card-title">title : {{employee.title |employeePipe:8}}</h5>
         </div>
       </div>
       <div *ngIf="!employee.followed; else showUnFollowed">
-        <button type="button"
+        <button type="button" [ngStyle]=""
                 (click)="follow(i)" class="btn btn-primary">{{followString}}</button>
-        <!--                [ngStyle]="{'color': employee.followed ? follow(i) : unFollow(i) }"-->
       </div>
       <ng-template #showUnFollowed>
         <button type="button"

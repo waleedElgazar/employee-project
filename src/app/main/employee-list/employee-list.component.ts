@@ -32,9 +32,11 @@ export class EmployeeListComponent implements OnInit{
     this.followString="Follow";
   }
   removeElementFromArray(element: number) {
-    this.followedEmployees.forEach((value,index)=>{
-      if(this.followedEmployees[index].followed) this.followedEmployees.splice(index,1);
-    });
+   console.log(element)
+    if (element>-1){
+      this.followedEmployees.splice(element,1);
+    }
+    console.log((this.followedEmployees))
   }
   showOnlyFollowed(){
     this.employees=this.followedEmployees;
