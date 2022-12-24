@@ -1,1 +1,27 @@
-<p>employee-list works!</p>
+<!--<app-followed-employee-list></app-followed-employee-list>-->
+<button type="button" class="btn btn-primary" (click)="showOnlyFollowed()">Show Followed</button>
+<h1>Employees List</h1>
+<div style="width: 100%" class="row" >
+
+  <ul *ngFor="let employee of employees;let i =index" class="col-4">
+    <div style="width: 100%">
+      <div class="card" style="width: 18rem;">
+        <img src="{{employee.img}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">employee name : {{employee.name}}</h5>
+          <h5 class="card-title">employee title : {{employee.title |employeePipe:8}}</h5>
+        </div>
+      </div>
+      <div *ngIf="!employee.followed; else showUnFollowed">
+        <button type="button"
+                (click)="follow(i)" class="btn btn-primary">{{followString}}</button>
+        <!--                [ngStyle]="{'color': employee.followed ? follow(i) : unFollow(i) }"-->
+      </div>
+      <ng-template #showUnFollowed>
+        <button type="button"
+                (click)="unFollow(i)" class="btn btn-danger">{{followString}}</button>
+      </ng-template>
+    </div>
+  </ul>
+</div>
+
