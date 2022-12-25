@@ -14,11 +14,11 @@
       </div>
       <div *ngIf="!employee.followed; else showUnFollowed">
         <button type="button" [ngStyle]=""
-                (click)="follow(i)" class="btn btn-primary">{{followString}}</button>
+                (click)="follow(i)" class="btn btn-primary">Follow</button>
       </div>
       <ng-template #showUnFollowed>
         <button type="button"
-                (click)="unFollow(i)" class="btn btn-danger">{{followString}}</button>
+                (click)="unFollow(employee.name)" class="btn btn-danger">Un Follow</button>
       </ng-template>
     </div>
   </ul>

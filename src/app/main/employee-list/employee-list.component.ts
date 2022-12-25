@@ -19,24 +19,33 @@ export class EmployeeListComponent implements OnInit{
     this.followedEmployees=[];
   }
   follow(idx:number){
-    this.employees[idx].followed=true;
-    let employee=this.employees[idx]
-    this.followedEmployees.push(employee);
-    // this.employees=this.employeeService.followEmployee(idx);
     this.followString="UnFollow";
      console.log("pressed",idx, this.followedEmployees, " ",this.followedEmployees.length)
-    // console.log(this.followedEmployees)
+    this.followedEmployees=this.employeeService.followEmployee(idx);
   }
-  unFollow(idx:number){
-    this.removeElementFromArray(idx);
+  // unFollow(idx:number){
+  //   this.followString="Follow";
+  //   console.log("pressed",idx, this.followedEmployees, " ",this.followedEmployees.length)
+  //   this.employees[idx].followed=false;
+  //   // this.followedEmployees=this.employeeService.unFollowEmployee(idx);
+  //   this.followedEmployees=this.employeeService.removeElementFromArray(idx);
+  // }
+
+  unFollow(name:string){
+    console.log(name,"from un follow")
     this.followString="Follow";
-  }
-  removeElementFromArray(element: number) {
-   console.log(element)
-    if (element>-1){
-      this.followedEmployees.splice(element,1);
-    }
-    console.log((this.followedEmployees))
+    let idx = this.followedEmployees.findIndex(object => {
+      return object.name == name;
+    });
+    let index =  this.employees.findIndex(object => {
+      return object.name === name;
+    });
+    console.log("pressed",idx, this.followedEmployees, " ",this.followedEmployees.length)
+    console.log("pressed",index, this.employees)
+    this.employees[index].followed=false;
+    // this.followedEmployees=this.employeeService.unFollowEmployee(idx);
+    this.followedEmployees=this.employeeService.removeElementFromArray(idx);
+
   }
   showOnlyFollowed(){
     this.employees=this.followedEmployees;
